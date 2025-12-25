@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Sekretariat Proker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="sidebar">
+      <div class="sidebar-logo"><h2>E-Sekretariat</h2></div>
+      <ul class="menu-list">
+        <li>
+          <a href="#" class="active" onclick="filterDept('Semua')">Dashboard</a>
+        </li>
+        <li><a href="#" onclick="filterDept('BPH')">BPH</a></li>
+        <li><a href="#" onclick="filterDept('PSDM')">Dept. PSDM</a></li>
+        <li><a href="#" onclick="filterDept('SOSMAGAM')">Dept. SOSMAGAM</a></li>
+        <li>
+          <a href="#" onclick="filterDept('KEWIRAUSAHAAN')"
+            >Dept. Kewirausahaan</a
+          >
+        </li>
+        <li><a href="#" onclick="filterDept('KOMINFO')">Dept. Kominfo</a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      <header>
+        <h1 id="headerTitle">Laporan Proker</h1>
+        <p id="dateDisplay"></p>
+      </header>
+
+      <section class="card">
+        <form id="prokerForm">
+          <div class="form-row">
+            <div class="input-group">
+              <label>Departemen</label>
+              <select id="deptInput" required>
+                <option value="">-- Pilih --</option>
+                <option value="BPH">BPH</option>
+                <option value="PSDM">PSDM</option>
+                <option value="SOSMAGAM">SOSMAGAM</option>
+                <option value="KEWIRAUSAHAAN">Kewirausahaan</option>
+                <option value="KOMINFO">Kominfo</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Nama Program Kerja</label>
+              <input
+                type="text"
+                id="prokerInput"
+                placeholder="Contoh: Seminar Digital"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <div class="input-group">
+                <label>Penanggung Jawab</label>
+                <input
+                  type="text"
+                  id="pjInput"
+                  placeholder="Nama PJ"
+                  required
+                />
+              </div>
+              <div class="input-group">
+                <label>Tanggal Pelaksanaan</label>
+                <input type="date" id="tglInput" required />
+              </div>
+            </div>
+            <div class="input-group">
+              <label>Status</label>
+              <select id="statusInput">
+                <option value="Terlaksana">Terlaksana</option>
+                <option value="Tidak Terlaksana">Tidak Terlaksana</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="editor-container">
+            <div class="toolbar">
+              <button type="button" onclick="format('bold')">B</button>
+              <button type="button" onclick="format('italic')">I</button>
+            </div>
+            <div
+              id="contentInput"
+              class="editor-area"
+              contenteditable="true"
+              data-placeholder="Tulis detail laporan di sini..."
+            ></div>
+          </div>
+
+          <div class="form-row-bottom">
+            <div class="input-group">
+              <label>Lampiran Gambar</label
+              ><input type="file" id="imageInput" accept="image/*" />
+            </div>
+            <div class="input-group">
+              <label>Link Dokumen</label
+              ><input type="url" id="linkInput" placeholder="https://..." />
+            </div>
+            <button type="submit" class="save-btn">Simpan Laporan</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 15%; text-align: center">DEPT</th>
+                <th style="width: 20%; text-align: center">NAMA PROKER</th>
+                <th style="width: 20%; text-align: center">PENANGGUNG JAWAB</th>
+                <th style="width: 18%; text-align: center">
+                  TANGGAL PELAKSANAAN
+                </th>
+                <th style="width: 15%; text-align: center">STATUS</th>
+                <th style="width: 15%; text-align: center">AKSI</th>
+              </tr>
+            </thead>
+            <tbody id="reportTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div id="detailModal" class="modal">
+      <div class="modal-word">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div class="word-workspace">
+          <div class="word-paper">
+            <div class="paper-header">
+              <h3>LAPORAN PERTANGGUNGJAWABAN</h3>
+              <h2 id="modalTitle">JUDUL</h2>
+              <div class="paper-line"></div>
+            </div>
+            <div id="modalImageDisplay"></div>
+            <div id="modalTextBody" class="paper-body"></div>
+          </div>
+        </div>
+        <div id="modalLinkArea" class="word-footer">
+          <a id="modalExternalLink" href="#" target="_blank" class="btn-link"
+            >Lihat Lampiran Asli</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
