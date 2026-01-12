@@ -326,3 +326,209 @@ table td {
   min-width: 90px;
   text-align: center;
 }
+/* --- RESPONSIVE SETTINGS --- */
+
+/* 1. Tampilan TABLET (Layar di bawah 1024px) */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 80px; /* Perkecil sidebar jadi ikon saja atau sembunyikan */
+  }
+  .sidebar h2,
+  .sidebar a span {
+    display: none; /* Sembunyikan teks menu */
+  }
+  .main-content {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+  }
+  .stats-container {
+    gap: 10px;
+  }
+}
+
+/* 2. Tampilan HP (Layar di bawah 768px) */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column; /* Sidebar pindah ke atas atau jadi menu tumpuk */
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 15px;
+  }
+
+  /* Statistik jadi tumpuk ke bawah di HP */
+  .stats-container {
+    flex-direction: column;
+  }
+
+  /* Form Input jadi satu kolom */
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Tabel agar bisa di-scroll ke samping di layar kecil */
+  .table-container {
+    overflow-x: auto;
+    display: block;
+  }
+
+  table {
+    min-width: 600px; /* Paksa tabel punya lebar minimal agar tidak gepeng */
+  }
+
+  .stat-card p {
+    font-size: 22px;
+  }
+}
+/* --- TAMBAHAN KHUSUS RESPONSIVE HP & TABLET --- */
+
+@media screen and (max-width: 768px) {
+  /* 1. Paksa Sidebar pindah ke atas agar tidak menutupi Form */
+  body {
+    flex-direction: column !important;
+  }
+
+  .sidebar {
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    display: block !important;
+  }
+
+  .sidebar-logo {
+    padding: 15px !important;
+  }
+
+  .menu-list {
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+
+  /* 2. Geser konten utama agar tidak ada margin kiri kosong */
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 15px !important;
+  }
+
+  /* 3. Perbaiki Form agar Pilihan Departemen muncul (tidak gepeng) */
+  .form-row,
+  .form-row-bottom {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .input-group {
+    width: 100% !important;
+  }
+
+  /* 4. SOLUSI TEKS TABEL BERTUMPUK (PENTING!) */
+  .table-container {
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; /* Supaya bisa digeser ke kanan */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    min-width: 800px !important; /* Paksa tabel tetap lebar agar teks tidak dempet */
+    table-layout: auto !important; /* Matikan layout fixed saat di HP */
+  }
+
+  table th,
+  table td {
+    white-space: nowrap !important; /* Cegah teks judul turun ke bawah */
+    padding: 10px !important;
+  }
+}
+
+/* Tablet (Layar Sedang) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .sidebar {
+    width: 80px !important;
+  }
+  .sidebar h2,
+  .sidebar span {
+    display: none !important;
+  }
+  .main-content {
+    margin-left: 80px !important;
+    width: calc(100% - 80px) !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .sidebar {
+    margin-bottom: 10px !important; /* Memberi jarak bawah agar tidak nempel judul */
+    background: #1e293b !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .main-content h1 {
+    margin-top: 10px !important;
+  }
+}
+/* Perbaikan Pencarian agar Full Width di HP */
+.search-container input:focus {
+  border-color: #3b82f6 !important;
+  outline: none;
+  background: #f8fafc;
+}
+
+/* Kunci utama agar tabel tidak bertumpukan teksnya */
+@media screen and (max-width: 768px) {
+  .table-container {
+    display: block;
+    width: 100%;
+    overflow-x: auto; /* Memungkinkan geser kanan-kiri */
+  }
+
+  table {
+    min-width: 850px !important; /* Memaksa tabel tetap lebar agar teks tidak dempet */
+    table-layout: auto !important;
+  }
+
+  table th,
+  table td {
+    white-space: nowrap !important; /* Mencegah judul kolom patah jadi 2 baris */
+    padding: 12px !important;
+  }
+}
+/* --- FIX TULISAN E-SEKRETARIAT MUNCUL DI HP --- */
+
+@media screen and (max-width: 768px) {
+  /* Pastikan container logo muncul */
+  .sidebar-logo {
+    display: block !important;
+    text-align: center !important;
+    padding: 20px 15px !important;
+    background: #1e293b !important; /* Warna biru tua sidebar */
+  }
+
+  /* Memaksa teks judul muncul dan berwarna putih */
+  .sidebar-logo h2 {
+    display: block !important;
+    visibility: visible !important;
+    color: #ffffff !important;
+    font-size: 22px !important;
+    font-weight: bold !important;
+    margin: 0 !important;
+    letter-spacing: 1px !important;
+  }
+
+  /* Mengatur navigasi menu agar rapi di bawah judul */
+  .menu-list {
+    display: flex !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    padding: 10px 0 !important;
+    border-top: 1px solid #334155 !important;
+  }
+}
