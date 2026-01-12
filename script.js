@@ -213,3 +213,19 @@ function openDetail(id) {
 function closeModal() {
   document.getElementById("detailModal").style.display = "none";
 }
+function searchData() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const rows = document.querySelectorAll("#reportTableBody tr");
+
+  rows.forEach((row) => {
+    // Ambil teks dari kolom Nama Proker (index 1) dan PJ (index 2)
+    const proker = row.cells[1] ? row.cells[1].innerText.toLowerCase() : "";
+    const pj = row.cells[2] ? row.cells[2].innerText.toLowerCase() : "";
+
+    if (proker.includes(input) || pj.includes(input)) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  });
+}
